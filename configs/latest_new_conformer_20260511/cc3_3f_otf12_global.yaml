@@ -1,0 +1,125 @@
+name: cc3_3f_otf12_global
+cage_xyz: example_inputs/CC3_3F_cage.xyz
+anion_template_xyz: example_inputs/otf_template.xyz
+fragment_mode: otf
+n_anions: 12
+output_dir: global_runs_sjr_conformers_20260511_clean/cc3_3f_otf12_global
+charge: 0
+spin: 1
+external_field:
+- 0.0
+- 0.0
+- 0.0
+polarmace:
+  model: polar-1-m
+  device: cuda
+  default_dtype: float64
+bias:
+  enabled: false
+formal_q_anion: -1.0
+global_search:
+  seeds:
+  - 1001
+  - 1002
+  - 1003
+  - 1004
+  - 1005
+  n_anions: 12
+  start:
+    radius_min: 5.0
+    radius_max: 11.0
+    min_atom_distance: 1.15
+    min_head_distance: 2.2
+    direction_mode: fibonacci
+    direction_jitter: 0.25
+    orientation: tail_out
+    attempts_per_anion: 3000
+    max_restarts: 100
+  stages:
+  - name: coarse_2000K
+    temperature: 2000.0
+    n_steps: 20000
+    write_every: 500
+    log_every: 100
+    mc:
+      translation_sigma: 0.15
+      rotation_max_deg: 8.0
+      radial_sigma: 0.12
+      tangential_sigma: 0.15
+      breathing_sigma: 0.015
+      hop_reorient: true
+      hop_random_roll: true
+      move_weights:
+        translate: 0.32
+        rotate: 0.32
+        radial: 0.2
+        hop: 0.14
+        breathing: 0.02
+      constraints:
+        min_distance:
+          enabled: true
+          heavy_heavy: 0.95
+          h_any: 0.6
+        shell:
+          enabled: true
+          center_mode: head
+          min_radius: 1.0
+          max_radius: 14.0
+  - name: anneal_1200K
+    temperature: 1200.0
+    n_steps: 50000
+    write_every: 1000
+    log_every: 100
+    mc:
+      translation_sigma: 0.08
+      rotation_max_deg: 4.0
+      radial_sigma: 0.06
+      tangential_sigma: 0.08
+      breathing_sigma: 0.008
+      hop_reorient: true
+      hop_random_roll: true
+      move_weights:
+        translate: 0.38
+        rotate: 0.38
+        radial: 0.16
+        hop: 0.06
+        breathing: 0.02
+      constraints:
+        min_distance:
+          enabled: true
+          heavy_heavy: 1.0
+          h_any: 0.65
+        shell:
+          enabled: true
+          center_mode: head
+          min_radius: 1.0
+          max_radius: 14.0
+  - name: refine_600K
+    temperature: 600.0
+    n_steps: 50000
+    write_every: 1000
+    log_every: 100
+    mc:
+      translation_sigma: 0.04
+      rotation_max_deg: 1.5
+      radial_sigma: 0.03
+      tangential_sigma: 0.04
+      breathing_sigma: 0.003
+      hop_reorient: true
+      hop_random_roll: true
+      move_weights:
+        translate: 0.45
+        rotate: 0.45
+        radial: 0.08
+        hop: 0.0
+        breathing: 0.02
+      constraints:
+        min_distance:
+          enabled: true
+          heavy_heavy: 1.05
+          h_any: 0.65
+        shell:
+          enabled: true
+          center_mode: head
+          min_radius: 1.0
+          max_radius: 14.0

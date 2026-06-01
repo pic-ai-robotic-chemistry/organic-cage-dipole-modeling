@@ -1,0 +1,35 @@
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Python environments
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Runtime outputs
+global_runs/
+runs/
+logs/
+*.log
+trajectory.xyz
+mc_log.csv
+
+# Large or local-only files
+*.pt
+*.pth
+*.ckpt
+*.tar
+*.tar.gz
+*.zip
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+

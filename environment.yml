@@ -1,0 +1,16 @@
+name: polarmace-mc
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - pyyaml
+  - tqdm
+  - ase
+  - pip:
+      # Install torch separately if you need a specific CUDA wheel.
+      # Then run install/install_polarmace_cpu.sh or install/install_polarmace_cuda.sh.
+      - -e .

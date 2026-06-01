@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cage-anion-polarmace-global-mc"
+version = "0.1.0"
+description = "Fixed-N rigid-body MC workflow for cage-anion adsorption shells driven by PolarMACE."
+requires-python = ">=3.10"
+dependencies = [
+  "ase>=3.23.0",
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "pyyaml>=6.0",
+  "pandas>=2.0",
+  "tqdm>=4.66",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cage_anion_mc*"]
