@@ -1,4 +1,4 @@
-# PolarMACE Cage-Anion Shell Monte Carlo
+# organic-cage-dipole-modeling
 
 This repository contains a fixed-number cage-anion shell Monte Carlo workflow using PolarMACE as the energy and dipole model.
 
